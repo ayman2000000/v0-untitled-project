@@ -25,10 +25,10 @@ export default function Home() {
         </div>
 
         {/* Site Title */}
-        <h1 className="text-3xl font-bold mb-2">شات احلى لمة</h1>
+        <h1 className="text-3xl font-bold mb-2"> شات بسكوته </h1>
 
         {/* Welcome Text */}
-        <p className="text-lg mb-8 max-w-md">أهلاً وسهلاً بكم في شات احلى لمة .. أفضل شات عربي</p>
+        <p className="text-lg mb-8 max-w-md">أهلاً وسهلاً بكم في شات بسكوته .. أفضل شات عربي</p>
 
         {/* Action Buttons */}
         <div className="flex flex-col space-y-4 w-full max-w-xs">
