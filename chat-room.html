@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شات الأردن - غرفة الدردشة</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="nav-left">
+                        <a href="rooms.html" class="home-link">
+                            <i class="fas fa-home"></i>
+                            <span class="font-bold">الرئيسية</span>
+                        </a>
+                        <span class="separator hidden-mobile">|</span>
+                        <h1 class="room-title hidden-mobile">شات الأردن</h1>
+                    </div>
+
+                    <div class="nav-right">
+                        <button class="icon-button" id="sound-toggle" title="كتم الصوت">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <button class="icon-button" id="fullscreen-toggle" title="ملء الشاشة">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button class="icon-button" id="settings-toggle" title="الإعدادات">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <button class="icon-button mobile-only" id="sidebar-toggle" title="قائمة المستخدمين">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <a href="rooms.html" class="exit-button">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="hidden-small">خروج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Room Info Bar -->
+        <div class="room-info-bar">
+            <div class="container">
+                <div class="info-content">
+                    <div class="room-info">
+                        <span class="room-name">شات الأردن</span>
+                        <span class="separator">•</span>
+                        <span class="users-count">7 متواجد</span>
+                    </div>
+                    <div class="room-actions">
+                        <button class="info-button">
+                            <i class="fas fa-info-circle"></i>
+                            <span>معلومات الغرفة</span>
+                        </button>
+                        <button class="info-button">
+                            <i class="fas fa-bell"></i>
+                            <span>إشعارات</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Chat Area -->
+            <div class="chat-area">
+                <!-- Settings Panel -->
+                <div class="settings-panel" id="settings-panel">
+                    <div class="settings-header">
+                        <h3>إعدادات المظهر</h3>
+                        <button class="close-button" id="close-settings">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="settings-grid">
+                        <div class="settings-group">
+                            <label class="settings-label">
+                                <i class="fas fa-font"></i>
+                                نوع الخط
+                            </label>
+                            <select id="font-family" class="settings-select">
+                                <option value="Arial">Arial</option>
+                                <option value="Tahoma">Tahoma</option>
+                                <option value="Verdana">Verdana</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Courier New">Courier New</option>
+                            </select>
+                        </div>
+
+                        <div class="settings-group">
+                            <label class="settings-label">
+                                <i class="fas fa-text-height"></i>
+                                حجم الخط
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="font-size" min="12" max="24" value="16" class="slider">
+                                <div class="slider-value" id="font-size-value">16px</div>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <label class="settings-label">
+                                <i class="fas fa-paint-brush"></i>
+                                لون الخط
+                            </label>
+                            <div class="color-picker-container">
+                                <button id="color-picker-button" class="color-button">
+                                    <span id="color-hex">#000000</span>
+                                    <div class="color-preview" id="color-preview"></div>
+                                </button>
+                                <div class="color-picker-popup" id="color-picker-popup">
+                                    <input type="color" id="color-picker" value="#000000">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="preview-container">
+                        <h4>معاينة</h4>
+                        <div class="text-preview" id="text-preview">
+                            هذا هو شكل النص الخاص بك في المحادثة
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                <div class="messages-container" id="messages-container">
+                    <!-- Welcome Message -->
+                    <div class="welcome-message">
+                        <div class="welcome-text">
+                            مرحباً بكم في شات الأردن! نتمنى لكم وقتاً ممتعاً
+                        </div>
+                    </div>
+
+                    <!-- Messages will be added here by JavaScript -->
+                </div>
+
+                <!-- Message Input -->
+                <div class="message-input-container">
+                    <div class="message-input-wrapper">
+                        <div class="message-tools">
+                            <button class="tool-button" id="emoji-button">
+                                <i class="far fa-smile"></i>
+                            </button>
+                            <button class="tool-button" id="image-button">
+                                <i class="far fa-image"></i>
+                            </button>
+                            <button class="tool-button" id="flag-button">
+                                <i class="far fa-flag"></i>
+                            </button>
+                            <button class="tool-button">
+                                <i class="fas fa-gift"></i>
+                            </button>
+                            <button class="tool-button">
+                                <i class="fas fa-music"></i>
+                            </button>
+                        </div>
+
+                        <textarea id="message-input" placeholder="اكتب رسالتك هنا..." rows="1"></textarea>
+
+                        <div class="message-actions">
+                            <button class="action-button voice-button">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button class="action-button video-button">
+                                <i class="fas fa-video"></i>
+                            </button>
+                            <button class="action-button send-button" id="send-button">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <button class="quick-action-button">
+                            <i class="fas fa-bolt"></i>
+                            إرسال سريع
+                        </button>
+                        <button class="quick-action-button">
+                            <i class="fas fa-coffee"></i>
+                            دعوة قهوة
+                        </button>
+                        <button class="quick-action-button">
+                            <i class="fas fa-heart"></i>
+                            إعجاب
+                        </button>
+                        <button class="quick-action-button">
+                            <i class="fas fa-magic"></i>
+                            تأثيرات
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar - Users -->
+            <div class="users-sidebar" id="users-sidebar">
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="all">الكل (7)</button>
+                        <button class="tab-button" data-tab="males"><span class="male-icon">♂</span> شباب</button>
+                        <button class="tab-button" data-tab="females"><span class="female-icon">♀</span> بنات</button>
+                    </div>
+
+                    <div class="tab-content active" id="all-tab">
+                        <div class="users-list" id="all-users">
+                            <!-- Users will be added here by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="males-tab">
+                        <div class="users-list" id="male-users">
+                            <!-- Male users will be added here by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="females-tab">
+                        <div class="users-list" id="female-users">
+                            <!-- Female users will be added here by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Actions -->
+                <div class="user-actions">
+                    <button class="user-action-button">
+                        <i class="fas fa-comment"></i>
+                        <span>رسالة</span>
+                    </button>
+                    <button class="user-action-button">
+                        <i class="fas fa-user-plus"></i>
+                        <span>إضافة</span>
+                    </button>
+                    <button class="user-action-button">
+                        <i class="fas fa-gift"></i>
+                        <span>هدية</span>
+                    </button>
+                    <button class="user-action-button">
+                        <i class="fas fa-bell"></i>
+                        <span>تنبيه</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <footer class="bottom-nav">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">الدعم الفني</a>
+                        <a href="#" class="footer-link">قوانين الموقع</a>
+                        <a href="#" class="footer-link">اتصل بنا</a>
+                    </div>
+                    <div class="copyright">© 2025 شات الأردن - جميع الحقوق محفوظة</div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Popups -->
+        <div class="popup" id="emoji-popup">
+            <div class="popup-content">
+                <div class="emoji-grid">
+                    <!-- Emojis will be added here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="popup" id="image-popup">
+            <div class="popup-content">
+                <h4>إدراج صورة</h4>
+                <input type="file" accept="image/*" class="file-input">
+                <p class="popup-hint">أو أدخل رابط الصورة</p>
+                <input type="text" placeholder="https://example.com/image.jpg" class="text-input">
+                <button class="popup-button">إدراج</button>
+            </div>
+        </div>
+
+        <div class="popup" id="flag-popup">
+            <div class="popup-content">
+                <div class="flag-grid">
+                    <!-- Flags will be added here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

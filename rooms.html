@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شات الأردن - غرف الدردشة</title>
+    <link rel="stylesheet" href="rooms-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="rooms-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="شات الأردن" class="logo-image">
+                    </div>
+                    <div class="user-info">
+                        <span class="admin-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            مشرف
+                        </span>
+                        <span class="welcome-text">مرحباً، المشرف</span>
+                        <a href="index.html" class="logout-button">
+                            <i class="fas fa-sign-out-alt"></i>
+                            خروج
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <div class="rooms-header">
+                    <h1 class="page-title">غرف الدردشة</h1>
+                    <button class="create-room-button" id="create-room-button">
+                        <i class="fas fa-plus-circle"></i>
+                        إنشاء غرفة جديدة
+                    </button>
+                </div>
+
+                <!-- Search -->
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="ابحث عن غرفة..." id="search-input">
+                </div>
+
+                <!-- Rooms Grid -->
+                <div class="rooms-grid" id="rooms-grid">
+                    <!-- Rooms will be added here by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">الدعم الفني</a>
+                        <a href="#" class="footer-link">قوانين الموقع</a>
+                        <a href="#" class="footer-link">اتصل بنا</a>
+                    </div>
+                    <div class="copyright">© 2025 شات الأردن - جميع الحقوق محفوظة</div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Create Room Modal -->
+        <div class="modal" id="create-room-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">إنشاء غرفة جديدة</h2>
+                    <button class="close-button" id="close-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="basic">معلومات أساسية</button>
+                        <button class="tab-button" data-tab="appearance">المظهر والتصميم</button>
+                        <button class="tab-button" data-tab="permissions">الإعدادات والصلاحيات</button>
+                    </div>
+
+                    <div class="tab-content active" id="basic-tab">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="room-name">اسم الغرفة</label>
+                                <input type="text" id="room-name" class="form-input" placeholder="أدخل اسم الغرفة">
+                            </div>
+                            <div class="form-group">
+                                <label for="room-image">صورة الغرفة (رابط)</label>
+                                <input type="text" id="room-image" class="form-input" placeholder="أدخل رابط الصورة">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-description">وصف الغرفة</label>
+                            <textarea id="room-description" class="form-textarea" placeholder="أدخل وصفاً للغرفة" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="welcome-message">رسالة الترحيب</label>
+                            <textarea id="welcome-message" class="form-textarea" placeholder="رسالة ترحيب تظهر للمستخدمين عند دخول الغرفة" rows="2"></textarea>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" id="is-private" class="form-checkbox">
+                            <label for="is-private" class="check-label">
+                                <i class="fas fa-lock"></i>
+                                غرفة خاصة
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="appearance-tab">
+                        <div class="form-group">
+                            <label>سمة الغرفة</label>
+                            <div class="theme-grid">
+                                <div class="theme-option">
+                                    <input type="radio" name="theme" id="theme-default" value="default" checked>
+                                    <label for="theme-default" class="theme-label">
+                                        <span class="color-preview default-theme"></span>
+                                        افتراضي
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" name="theme" id="theme-blue" value="blue">
+                                    <label for="theme-blue" class="theme-label">
+                                        <span class="color-preview blue-theme"></span>
+                                        أزرق
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" name="theme" id="theme-green" value="green">
+                                    <label for="theme-green" class="theme-label">
+                                        <span class="color-preview green-theme"></span>
+                                        أخضر
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" name="theme" id="theme-red" value="red">
+                                    <label for="theme-red" class="theme-label">
+                                        <span class="color-preview red-theme"></span>
+                                        أحمر
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" name="theme" id="theme-purple" value="purple">
+                                    <label for="theme-purple" class="theme-label">
+                                        <span class="color-preview purple-theme"></span>
+                                        بنفسجي
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" name="theme" id="theme-pink" value="pink">
+                                    <label for="theme-pink" class="theme-label">
+                                        <span class="color-preview pink-theme"></span>
+                                        وردي
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" name="theme" id="theme-yellow" value="yellow">
+                                    <label for="theme-yellow" class="theme-label">
+                                        <span class="color-preview yellow-theme"></span>
+                                        أصفر
+                                    </label>
+                                </div>
+                                <div class="theme-option">
+                                    <input type="radio" name="theme" id="theme-dark" value="dark">
+                                    <label for="theme-dark" class="theme-label">
+                                        <span class="color-preview dark-theme"></span>
+                                        داكن
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="max-users">الحد الأقصى للمستخدمين</label>
+                            <select id="max-users" class="form-select">
+                                <option value="20">20 مستخدم</option>
+                                <option value="50" selected>50 مستخدم</option>
+                                <option value="100">100 مستخدم</option>
+                                <option value="150">150 مستخدم</option>
+                                <option value="200">200 مستخدم</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>معاينة</label>
+                            <div class="theme-preview default-theme" id="theme-preview">
+                                <h3 class="preview-title">اسم الغرفة</h3>
+                                <p class="preview-description">وصف الغرفة</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="permissions-tab">
+                        <div class="permissions-list">
+                            <div class="permission-item">
+                                <label for="allow-images" class="permission-label">
+                                    <i class="far fa-image"></i>
+                                    السماح بمشاركة الصور
+                                </label>
+                                <label class="switch">
+                                    <input type="checkbox" id="allow-images" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="permission-item">
+                                <label for="allow-voice" class="permission-label">
+                                    <i class="fas fa-microphone"></i>
+                                    السماح بالمكالمات الصوتية
+                                </label>
+                                <label class="switch">
+                                    <input type="checkbox" id="allow-voice" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="permission-item">
+                                <label for="allow-video" class="permission-label">
+                                    <i class="fas fa-video"></i>
+                                    السماح بمكالمات الفيديو
+                                </label>
+                                <label class="switch">
+                                    <input type="checkbox" id="allow-video" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="secondary-button" id="prev-button">السابق</button>
+                    <button class="primary-button" id="next-button">التالي</button>
+                    <button class="primary-button" id="create-button" style="display: none;">إنشاء الغرفة</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div class="modal" id="delete-modal">
+            <div class="modal-content delete-modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title delete-title">تأكيد حذف الغرفة</h2>
+                    <button class="close-button" id="close-delete-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>هل أنت متأكد من رغبتك في حذف هذه الغرفة؟ هذا الإجراء لا يمكن التراجع عنه.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="secondary-button" id="cancel-delete">إلغاء</button>
+                    <button class="destructive-button" id="confirm-delete">حذف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="rooms-script.js"></script>
+</body>
+</html>

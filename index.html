@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شات الأردن - الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="index-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="home-container">
+        <!-- Background Image -->
+        <div class="background-image"></div>
+
+        <!-- Header with Language Selector -->
+        <header class="header">
+            <div></div>
+            <div class="language-selector">
+                <button class="language-button" id="language-button">
+                    <i class="fas fa-globe"></i>
+                    العربية
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="language-dropdown" id="language-dropdown">
+                    <div class="language-option active">العربية</div>
+                    <div class="language-option">English</div>
+                    <div class="language-option">Français</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="images/logo.png" alt="شات الأردن" class="logo-image">
+            </div>
+
+            <!-- Site Title -->
+            <h1 class="site-title">شات احلى لمة</h1>
+
+            <!-- Welcome Text -->
+            <p class="welcome-text">أهلاً وسهلاً بكم في شات احلى لمة .. أفضل شات عربي</p>
+
+            <!-- Action Buttons -->
+            <div class="buttons-container">
+                <a href="login.html" class="action-button member-button">
+                    <span class="button-text">دخول الأعضاء</span>
+                    <i class="fas fa-sign-in-alt"></i>
+                </a>
+
+                <a href="visitor.html" class="action-button visitor-button">
+                    <span class="button-text">دخول زوار</span>
+                    <i class="fas fa-users"></i>
+                </a>
+
+                <a href="register.html" class="action-button register-button">
+                    <span class="button-text">سجل الآن</span>
+                    <i class="fas fa-user-plus"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageButton = document.getElementById('language-button');
+            const languageDropdown = document.getElementById('language-dropdown');
+            const languageOptions = document.querySelectorAll('.language-option');
+
+            // Toggle language dropdown
+            languageButton.addEventListener('click', function() {
+                languageDropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!languageButton.contains(e.target) && !languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('active');
+                }
+            });
+
+            // Language selection
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    languageButton.querySelector('span').textContent = this.textContent;
+                    languageDropdown.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
